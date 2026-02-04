@@ -1,8 +1,11 @@
 title: 0xOsama
 email: your-email@example.com
 description: "Malware Analyst & Blue Teamer"
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+# Replace with your repository name if hosting at username.github.io/repository-name
+# Leave properly empty if hosting at username.github.io
+baseurl: "/my-blog" 
+# Replace with your GitHub Pages URL (e.g., https://0xOsama.github.io)
+url: "https://0xOsama.github.io" 
 author:
   name: "Mahmoud Osama"
   avatar: "/assets/images/profile.jpg"
