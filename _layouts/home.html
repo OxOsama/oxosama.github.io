@@ -64,7 +64,11 @@ layout: default
                 </div>
                 
                 <div class="flex flex-col gap-6">
-                    {% assign all_posts = site.posts | concat: site.malware_analysis | concat: site.re_labs | concat: site.writeups | sort: 'date' | reverse %}
+                    {% assign empty_array = "" | split: "" %}
+                    {% assign malware_analysis_posts = site.malware_analysis | default: empty_array %}
+                    {% assign re_labs_posts = site.re_labs | default: empty_array %}
+                    {% assign writeups_posts = site.writeups | default: empty_array %}
+                    {% assign all_posts = site.posts | concat: malware_analysis_posts | concat: re_labs_posts | concat: writeups_posts | sort: 'date' | reverse %}
                     {% for post in all_posts limit:5 %}
                     <article class="group flex flex-col md:flex-row gap-6 rounded-xl border border-[#283239] bg-[#161b22] p-5 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 relative">
                         <a href="{{ post.url | relative_url }}" class="absolute inset-0 z-10"></a>
