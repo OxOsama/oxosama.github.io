@@ -1,10 +1,9 @@
 ﻿---
 layout: post
 title: "UNE - OSINT Writeup"
-date: 2026-01-25
+date: [welcome, update]
 tags: [OSINT, CTF]
 image: /assets/images/Covers/0xL4ugh_ctf_v5.png
-toc: true
 ---
 
 ## <span style="color:#0056D2;">**Description**</span>
