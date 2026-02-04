@@ -64,13 +64,15 @@ layout: default
                 </div>
                 
                 <div class="flex flex-col gap-6">
-                    {% for post in site.posts limit:5 %}
+                    {% assign all_posts = site.posts | concat: site.malware_analysis | concat: site.re_labs | concat: site.writeups | sort: 'date' | reverse %}
+                    {% for post in all_posts limit:5 %}
                     <article class="group flex flex-col md:flex-row gap-6 rounded-xl border border-[#283239] bg-[#161b22] p-5 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 relative">
                         <a href="{{ post.url | relative_url }}" class="absolute inset-0 z-10"></a>
                          <!-- Fallback if no image -->
                         <div class="w-full md:w-48 h-48 md:h-auto shrink-0 rounded-lg bg-cover bg-center overflow-hidden relative bg-[#283239]">
-                             {% if post.image %}
-                                <div class="w-full h-full bg-cover bg-center" style="background-image: url('{{ post.image | relative_url }}');"></div>
+                             {% assign post_image = post.image | default: post.header.teaser %}
+                             {% if post_image %}
+                                <div class="w-full h-full bg-cover bg-center" style="background-image: url('{{ post_image | relative_url }}');"></div>
                              {% else %}
                                 <div class="flex items-center justify-center h-full text-gray-500">
                                     <span class="material-symbols-outlined text-4xl">terminal</span>
@@ -91,7 +93,8 @@ layout: default
                                 </p>
                             </div>
                             <div class="flex flex-wrap gap-2 mt-4 z-20"> <!-- z-20 to be clickable above the full card link if needed, otherwise remove z-20 -->
-                                {% for tag in post.tags %}
+                                {% assign all_tags = post.tags | default: post.categories %}
+                                {% for tag in all_tags %}
                                 <span class="px-2.5 py-1 rounded text-xs font-medium bg-[#283239] text-[#1392ec] border border-[#1392ec]/20">#{{ tag }}</span>
                                 {% endfor %}
                             </div>
