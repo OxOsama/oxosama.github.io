@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    {% include head.html %}
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden antialiased selection:bg-primary/30 selection:text-white flex flex-col min-h-screen">
+    {% include header.html %}
+
+    <div class="flex-grow">
+        {{ content }}
+    </div>
+
+    {% include footer.html %}
+</body>
+</html>

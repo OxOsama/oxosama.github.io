@@ -1,0 +1,52 @@
+title: 0xOsama
+email: your-email@example.com
+description: "Malware Analyst & Blue Teamer"
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+author:
+  name: "Mahmoud Osama"
+  avatar: "/assets/images/profile.jpg"
+  bio: "Malware Analyst & Blue Teamer"
+  twitter: 0xOsama
+  github: 0xOsama
+
+markdown: kramdown
+# theme: minima
+plugins:
+  - jekyll-feed
+
+header_pages:
+  - about.md
+
+collections:
+  malware-analysis:
+    output: true
+    permalink: /malware-analysis/:path/
+  re-labs:
+    output: true
+    permalink: /re-labs/:path/
+  writeups:
+    output: true
+    permalink: /writeups/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "malware-analysis"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "re-labs"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "writeups"
+    values:
+      layout: "post"

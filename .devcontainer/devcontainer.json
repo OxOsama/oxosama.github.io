@@ -1,0 +1,15 @@
+{
+	"name": "Jekyll Site",
+    "image": "jekyll/jekyll:latest",
+	"forwardPorts": [4000],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "sii.benjamin-jekyll-snippets",
+                "george-alisson.html-preview-vscode"
+            ]
+        }
+    },
+	"postCreateCommand": "bundle install",
+    "remoteUser": "jekyll"
+}
