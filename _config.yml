@@ -1,55 +1,16 @@
-title: 0xOsama
-email: your-email@example.com
-description: "Malware Analyst & Blue Teamer"
-# Replace with your repository name if hosting at username.github.io/repository-name
-# Leave properly empty if hosting at username.github.io
-baseurl: "" 
-# Replace with your GitHub Pages URL (e.g., https://0xOsama.github.io)
-url: "https://oxosama.github.io" 
-author:
-  name: "Mahmoud Osama"
-  avatar: "/assets/images/profile.jpg"
-  bio: "Malware Analyst & Blue Teamer"
-  twitter: 0xOsama
-  github: 0xOsama
-
-markdown: kramdown
-# theme: minima
+title: 0xAnalyst
+description: Malware Research Blog
+url: ""
+baseurl: ""
+theme: jekyll-theme-slate # Optional, we override it
 plugins:
   - jekyll-feed
 
-header_pages:
-  - about.md
+# Ensure our API file is processed
+include: ['api/posts.json']
+exclude: ['node_modules', 'package.json', 'package-lock.json', 'tsconfig.json']
 
-collections:
-  malware-analysis:
-    output: true
-    permalink: /malware-analysis/:path/
-  re-labs:
-    output: true
-    permalink: /re-labs/:path/
-  writeups:
-    output: true
-    permalink: /writeups/:path/
-
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-  - scope:
-      path: ""
-      type: "malware-analysis"
-    values:
-      layout: "post"
-  - scope:
-      path: ""
-      type: "re-labs"
-    values:
-      layout: "post"
-  - scope:
-      path: ""
-      type: "writeups"
-    values:
-      layout: "post"
+# Markdown Settings
+markdown: kramdown
+highlighter: rouge
+permalink: /posts/:year/:month/:day/:title/
