@@ -6,7 +6,7 @@ header:
 ribbon:   Green
 description: "A Walkthrough to the Cyberdefenders blue team lab focusing on Threat Intel and Reverse Engineering."
 categories:
-  - Reverse Engineering
+  - Tutorials & Labs
 toc: true
 ---
 

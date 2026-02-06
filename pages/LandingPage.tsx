@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight, Search, Terminal, Key } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Search, Terminal, Linkedin } from 'lucide-react';
 import { useBlog } from '../utils/blogContext';
 
 const LandingPage = () => {
@@ -25,13 +25,13 @@ const LandingPage = () => {
                     <div className="relative z-10 px-6 py-16 md:px-12 md:py-20 flex flex-col gap-6 max-w-3xl">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-primary/10 border border-primary/20 w-fit">
                             <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                             </span>
                             <span className="text-primary text-xs font-mono font-bold uppercase tracking-wider">System Online</span>
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">
-                            Reverse Engineering <span className="text-primary">|</span> Malware Analysis <span className="text-primary">|</span> Threat Intel
+                            Malware Analysis <span className="text-primary">|</span> Digital Forensics <span className="text-primary">|</span> Threat Intel
                         </h1>
                         <p className="text-slate-600 dark:text-gray-400 text-lg md:text-xl font-light max-w-2xl border-l-2 border-primary/50 pl-4">
                             Documenting the bits and bytes of the unknown. Exploring obfuscated code, kernel structures, and APT campaigns.
@@ -41,10 +41,10 @@ const LandingPage = () => {
                                 <Terminal size={20} />
                                 <span>View Latest Intel</span>
                             </Link>
-                            <button className="flex items-center gap-2 bg-slate-200 dark:bg-[#283239] hover:bg-slate-300 dark:hover:bg-[#323e47] text-slate-900 dark:text-white px-6 py-3 rounded-lg font-bold transition-all border border-transparent hover:border-gray-400 dark:hover:border-gray-600">
-                                <Key size={20} />
-                                <span>PGP Key</span>
-                            </button>
+                            <a href="https://www.linkedin.com/in/0xosama/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-slate-200 dark:bg-[#283239] hover:bg-slate-300 dark:hover:bg-[#323e47] text-slate-900 dark:text-white px-6 py-3 rounded-lg font-bold transition-all border border-transparent hover:border-gray-400 dark:hover:border-gray-600">
+                                <Linkedin size={20} />
+                                <span>LinkedIn</span>
+                            </a>
                         </div>
                     </div>
                 </div>

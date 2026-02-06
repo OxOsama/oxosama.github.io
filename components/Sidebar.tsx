@@ -24,14 +24,14 @@ const Sidebar = () => {
                 <div className="flex items-center gap-4">
                     <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-primary/20">
                         <img 
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANqJsewlEGNOgYHYaX5jGwBfvOni1xsohQIVRhjaI9g3oOBZ2x7EWhOzSRECYnELSUUxhQUaHFphJTJzWIxFg_EZPKSV8Xr3egudFB4enQQrdUXErCCEZenBpgSqNYLR1SlYMkPKOsQpHnceikjptZmj55t6MGsI1K9t7jYgLD4xfE6z6jEBJCgWFI264adbxTA_ayH8J5XVNufVl29Bl3NTHgwexN7y_7BhJ5_pZYlXOWZ9-ZLnUDudDVCnGsCQ8k1Xy0dUP0hUE" 
+                            src="/assets/images/site_data/avatar.jpg" 
                             alt="Profile" 
                             className="w-full h-full object-cover"
                         />
                     </div>
                     <div className="flex flex-col">
-                        <h1 className="text-slate-900 dark:text-white text-lg font-bold leading-tight">Alex Cipher</h1>
-                        <p className="text-slate-500 dark:text-slate-400 text-xs font-mono">Malware Researcher</p>
+                        <h1 className="text-slate-900 dark:text-white text-lg font-bold leading-tight">Mahmoud Osama</h1>
+                        <p className="text-slate-500 dark:text-slate-400 text-xs font-mono">Security Engineer</p>
                     </div>
                 </div>
 
@@ -49,10 +49,7 @@ const Sidebar = () => {
                         <Terminal size={20} className={iconClass('/archive')} />
                         <span className="text-sm font-medium">Archives</span>
                     </Link>
-                    <a href="#" className={linkClass('/rss')}>
-                        <Rss size={20} className={iconClass('/rss')} />
-                        <span className="text-sm font-medium">RSS Feed</span>
-                    </a>
+
                 </nav>
 
                 <div className="h-px bg-slate-200 dark:bg-slate-800 w-full my-1"></div>
@@ -61,43 +58,66 @@ const Sidebar = () => {
                 <div className="flex flex-col gap-2">
                     <h3 className="px-3 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Categories</h3>
                     <nav className="flex flex-col gap-1">
-                        <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 border border-primary/20 text-slate-900 dark:text-white group">
-                            <FolderOpen size={20} className="text-primary fill-current" />
-                            <span className="text-sm font-medium">Malware Analysis</span>
-                        </a>
-                        <a href="#" className={linkClass('/ctf')}>
-                            <Flag size={20} className={iconClass('/ctf')} />
-                            <span className="text-sm font-medium">CTF Writeups</span>
-                        </a>
-                        <a href="#" className={linkClass('/tools')}>
-                            <Wrench size={20} className={iconClass('/tools')} />
-                            <span className="text-sm font-medium">Tools & Dev</span>
-                        </a>
-                        <a href="#" className={linkClass('/vuln')}>
-                            <Bug size={20} className={iconClass('/vuln')} />
-                            <span className="text-sm font-medium">Vulnerabilities</span>
-                        </a>
+
+                    <Link to="/archive?category=Malware" className={linkClass('/archive?category=Malware')}>
+                        <Bug size={20} className={iconClass('/malware')} />
+                        <span className="text-sm font-medium">Malware Analysis</span>
+                    </Link>                                     
+                    
+                    <Link to="/archive?category=CTF" className={linkClass('/archive?category=CTF')}>
+                        <Flag size={20} className={iconClass('/ctf')} />
+                        <span className="text-sm font-medium">CTF Writeups</span>
+                    </Link>
+
+                    <Link to="/archive?category=Tutorials" className={linkClass('/archive?category=Tutorials')}>
+                        <FolderOpen size={20} className={iconClass('/tutorials_labs')} />
+                        <span className="text-sm font-medium">Tutorials & Labs</span>
+                    </Link>
+
+                    <Link to="/archive?category=Tools" className={linkClass('/archive?category=Tools')}>
+                        <Wrench size={20} className={iconClass('/tools_dev')} />
+                        <span className="text-sm font-medium">Tools & Dev</span>
+                    </Link>
                     </nav>
                 </div>
-
+                
+                <div className="h-px bg-slate-200 dark:bg-slate-800 w-full my-1"></div>
+                
                 <div className="mt-auto"></div>
-
-                {/* Socials */}
                 <div className="flex flex-col gap-1">
-                    <h3 className="px-3 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">Socials</h3>
-                    <a href="#" className={linkClass('/twitter')}>
+                    <h3 className="px-3 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
+                        Socials
+                    </h3>
+
+                    <a href="https://x.com/0xOs_ama" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={linkClass('/twitter')}>
                         <MessageSquare size={20} className={iconClass('/twitter')} />
                         <span className="text-sm font-medium">Twitter / X</span>
                     </a>
-                    <a href="#" className={linkClass('/github')}>
+
+                    <a
+                        href="https://github.com/oxOsama"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={linkClass('/github')}
+                    >
                         <Github size={20} className={iconClass('/github')} />
                         <span className="text-sm font-medium">GitHub</span>
                     </a>
-                    <a href="#" className={linkClass('/linkedin')}>
+
+                    <a
+                        href="https://www.linkedin.com/in/0xosama/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={linkClass('/linkedin')}
+                    >
                         <Linkedin size={20} className={iconClass('/linkedin')} />
                         <span className="text-sm font-medium">LinkedIn</span>
                     </a>
                 </div>
+
             </div>
         </aside>
     );

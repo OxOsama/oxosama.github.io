@@ -33,10 +33,10 @@ const PostDetailPage = () => {
                         {/* Author Card */}
                         <div className="rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark p-5 flex flex-col items-center text-center">
                             <div className="size-20 rounded-full border-2 border-primary/30 p-1 mb-3">
-                                <div className="w-full h-full rounded-full bg-cover bg-center" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYYJhNCB2SgCtFjpp5Q0kx7F2NEQi_7q2SN9CVDRlU79B0rr9N-QHgdReb4r01g3AkiLR1MvR7tkBKzUQ6927EAoKYgrdUS_UJu6UEmZtU7ISnISGZ7IVlpBXdT2lz_5ZKiqQ5SFZCjlMLgAzbG2IlSiNHSkK-MAvN4_0-N4mSmhuzbaWkbakTX1KvGQ9tVQvwj4v7mPcoGTe2HskVT1vHMZCJUaaO4wAnJZvnj2lL9USAqfdLKHAHZofU6IceSfi91HY3jGbH8B4')" }}></div>
+                                <div className="w-full h-full rounded-full bg-cover bg-center" style={{ backgroundImage: "url('/assets/images/site_data/avatar.jpg')" }}></div>
                             </div>
-                            <h3 className="text-slate-900 dark:text-white font-bold text-lg">Alex Cipher</h3>
-                            <p className="text-slate-500 dark:text-[#9dadb9] text-xs mb-4">Malware Analyst & Reverse Engineer.</p>
+                            <h3 className="text-slate-900 dark:text-white font-bold text-lg">Mahmoud Osama</h3>
+                            <p className="text-slate-500 dark:text-[#9dadb9] text-xs mb-4">Security Engineer.</p>
                             <button className="w-full py-1.5 rounded-lg border border-slate-300 dark:border-[#3b4954] text-slate-500 dark:text-[#9dadb9] text-xs font-medium hover:text-white hover:border-primary/50 hover:bg-primary/10 transition-colors">
                                 Follow
                             </button>

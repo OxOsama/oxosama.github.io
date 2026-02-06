@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import MatrixBackground from './components/MatrixBackground';
 import { Moon, Sun } from 'lucide-react';
 import { BlogProvider } from './utils/blogContext';
 
@@ -20,15 +21,15 @@ const ScrollToTop = () => {
 
 const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const isSidebarLayout = ['/archive', '/about'].includes(location.pathname);
-  const isNavbarLayout = ['/', '/post'].some(path => location.pathname === path || location.pathname.startsWith('/post/'));
+  const isSidebarLayout = ['/about'].includes(location.pathname);
   const isErrorPage = location.pathname === '/404';
+  const isNavbarLayout = !isSidebarLayout && !isErrorPage;
 
   if (isSidebarLayout) {
     return (
-      <div className="flex h-screen overflow-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
+      <div className="flex h-screen overflow-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300 relative">
         <Sidebar />
-        <main className="flex-1 h-full overflow-y-auto relative">
+        <main className="flex-1 h-full overflow-y-auto relative z-10">
            <div className="md:hidden flex items-center justify-between p-4 bg-surface-dark border-b border-border-dark sticky top-0 z-20">
               <h1 className="text-white font-bold">0xAnalyst</h1>
               <ThemeToggle />
@@ -40,10 +41,13 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (isNavbarLayout) {
+    const isPostPage = location.pathname.startsWith('/post/');
+    const isRootPage = location.pathname === '/';
     return (
-      <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300 flex flex-col">
+      <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300 flex flex-col relative">
+        {!isPostPage && !isRootPage && <MatrixBackground />}
         <Navbar />
-        <main className="flex-grow flex flex-col w-full">
+        <main className="flex-grow flex flex-col w-full relative z-10">
           {children}
         </main>
         <Footer />
@@ -87,15 +91,15 @@ const Footer = () => (
             <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2 text-slate-900 dark:text-white font-bold">
                     <span className="text-primary font-mono">&gt;_</span>
-                    ./0xAnalyst
+                    ./0xOsama
                 </div>
                 <p className="text-slate-500 text-xs font-mono">
-                    © 2024 Cybersecurity Research Blog. All rights reserved.
+                    © 2026 Cybersecurity Research Blog. All rights reserved.
                 </p>
             </div>
             <div className="flex gap-6 text-sm">
-                <a href="#" className="text-slate-500 hover:text-primary transition-colors">PGP Key</a>
-                <a href="#" className="text-slate-500 hover:text-primary transition-colors">RSS</a>
+                <a href="https://www.linkedin.com/in/0xosama/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-primary transition-colors">LinkedIn</a>
+                <a href="#" className="text-slate-500 hover:text-primary transition-colors">Back to top</a>
             </div>
         </div>
     </footer>

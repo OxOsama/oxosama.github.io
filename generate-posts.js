@@ -38,14 +38,38 @@ async function generatePosts() {
         // Construct ID (permalink) similar to Jekyll: /year/month/day/title/
         // Or simpler: /posts/title-slug
         // For compatibility with React Router, let's use the filename slug or data.permalink
-        const slug = filename.replace(/^(\d{4}-\d{2}-\d{2})-/, '').replace(/.md$/, '');
-        const id = `/posts/${slug}`;
+        let rawSlug = filename.replace(/^(\d{4}-\d{2}-\d{2})-/, '').replace(/.md$/, '');
+        // Normalize slug: lowercase, replace spaces with dashes, ensure URL friendliness
+        const slug = rawSlug.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+        
+        const id = `/post/${slug}`;
         
         // Extract first image for thumbnail if not provided
         let imageUrl = data.image || data.imageUrl;
         if (!imageUrl) {
             const imgMatch = content.match(/!\[.*?\]\((.*?)\)/);
             if (imgMatch) imageUrl = imgMatch[1];
+        }
+
+        // Helper to normalize category
+        let category = data.categories || data.category || 'General';
+        if (Array.isArray(category)) {
+            category = category.length > 0 ? category[0] : 'General';
+        }
+
+        // Auto-tag based on folder structure
+        let tags = data.tags || [];
+        const relativeFolder = path.dirname(file);
+        
+        // Add CTF tag for CTF folder
+        if (relativeFolder.includes('CTF') || relativeFolder.includes('Write-Up')) {
+            if (!tags.includes('CTF')) tags.push('CTF');
+            if (category === 'General' || category === 'Write-Ups') category = 'CTF Writeups';
+        }
+        
+        // Add Malware tag for RE folders
+        if (relativeFolder.includes('reverse-engineering') || relativeFolder.includes('Tutorials-Labs')) {
+             if (!tags.includes('Malware')) tags.push('Malware');
         }
 
         return {
@@ -55,8 +79,8 @@ async function generatePosts() {
             description: data.description || data.excerpt || content.substring(0, 150) + '...',
             date: format(dateString, 'MMMM d, yyyy'),
             readTime: `${readTimeMinutes} min read`,
-            tags: data.tags || [],
-            category: data.categories || data.category || 'General',
+            tags: tags,
+            category: String(category),
             imageUrl: imageUrl,
             content: htmlContent // The full HTML content
         };

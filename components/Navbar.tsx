@@ -20,17 +20,18 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-3 group">
-                        <div className="flex items-center justify-center size-8 rounded bg-primary/10 dark:bg-primary/20 text-primary">
-                            <Terminal size={20} />
+                        <div className="flex items-center justify-center size-8 rounded hover:opacity-80 transition-opacity">
+                            <img src="/assets/images/site_data/logo.png" alt="Logo" className="w-full h-full object-contain" />
                         </div>
-                        <span className="text-slate-900 dark:text-white text-lg font-bold tracking-tight">./0xAnalyst</span>
+                        <span className="text-slate-900 dark:text-white text-lg font-bold tracking-tight">./0xOsama</span>
                     </Link>
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-8">
                         <Link to="/about" className="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium">About</Link>
-                        <Link to="/archive" className="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium">Labs</Link>
-                        <a href="#" className="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium">RSS</a>
+                        <Link to="/archive?category=Malware" className="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium">Malware Analysis</Link>
+                        <Link to="/archive?category=CTF" className="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium">CTF Writeups</Link>
+                        <Link to="/archive?category=Tutorials" className="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium">Tutorials & Labs</Link>
                         
                         <div className="h-4 w-px bg-slate-200 dark:bg-[#283239]"></div>
 

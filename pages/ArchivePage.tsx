@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Search } from 'lucide-react';
 import { useBlog } from '../utils/blogContext';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const ArchivePage = () => {
     const { posts, loading } = useBlog();
+    const [searchParams] = useSearchParams();
+    const categoryParam = searchParams.get('category');
+    
     const [searchTerm, setSearchTerm] = useState('');
+
+    // Update search term when URL category changes
+    useEffect(() => {
+        if (categoryParam) {
+            setSearchTerm(categoryParam);
+        }
+    }, [categoryParam]);
 
     const filteredPosts = posts.filter(post => 
         post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
