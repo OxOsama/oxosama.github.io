@@ -6,7 +6,7 @@ import { glob } from 'glob';
 import { format } from 'date-fns';
 
 const POSTS_DIR = path.join(process.cwd(), '_posts');
-const OUTPUT_DIR = path.join(process.cwd(), 'api');
+const OUTPUT_DIR = path.join(process.cwd(), 'public', 'api');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, 'posts.json');
 
 // Ensure output directory exists
