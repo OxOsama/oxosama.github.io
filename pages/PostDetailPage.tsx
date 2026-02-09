@@ -1,0 +1,113 @@
+import React, { useEffect, useState } from 'react';
+import { Calendar, Clock, Share2, Bookmark, Github, Twitter, Linkedin, Copy, ArrowRight } from 'lucide-react';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { useBlog } from '../utils/blogContext';
+import { Post } from '../types';
+
+const PostDetailPage = () => {
+    const { getPostById, loading } = useBlog();
+    const location = useLocation();
+    // Get ID from URL path since standard Params might fail with wildcards in HashRouter sometimes
+    // But since we use /post/* in App.tsx, useParams should capture it if we used a named param
+    // Let's rely on manual parsing to be safe with HashRouter wildcards
+    const pathId = location.pathname.split('/').pop();
+    
+    const [post, setPost] = useState<Post | undefined>(undefined);
+
+    useEffect(() => {
+        if (!loading && pathId) {
+            const found = getPostById(pathId);
+            setPost(found);
+        }
+    }, [pathId, loading, getPostById]);
+
+    if (loading) return <div className="p-12 text-center dark:text-white font-mono">Decrypting payload...</div>;
+    if (!post) return <div className="p-12 text-center dark:text-white font-mono">404: Intel Not Found</div>;
+
+    return (
+        <div className="flex-grow max-w-[1440px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative">
+                {/* Left Sidebar: Author & Context (Sticky) */}
+                <aside className="hidden lg:block lg:col-span-2 xl:col-span-2 relative">
+                    <div className="sticky top-24 flex flex-col gap-6">
+                        {/* Author Card */}
+                        <div className="rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark p-5 flex flex-col items-center text-center">
+                            <div className="size-20 rounded-full border-2 border-primary/30 p-1 mb-3">
+                                <div className="w-full h-full rounded-full bg-cover bg-center" style={{ backgroundImage: "url('/assets/images/site_data/avatar.jpg')" }}></div>
+                            </div>
+                            <h3 className="text-slate-900 dark:text-white font-bold text-lg">Mahmoud Osama</h3>
+                            <p className="text-slate-500 dark:text-[#9dadb9] text-xs mb-4">Security Engineer.</p>
+                            <a 
+                                href="mailto:mahmoudosama_1@outlook.com?subject=Subscribe%20to%20Newsletter"
+                                className="w-full py-1.5 rounded-lg border border-slate-300 dark:border-[#3b4954] text-slate-500 dark:text-[#9dadb9] text-xs font-medium hover:text-white hover:border-primary/50 hover:bg-primary/10 transition-colors flex items-center justify-center"
+                            >
+                                Subscribe
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+
+                {/* Center Column: Content */}
+                <article className="col-span-1 lg:col-span-7 xl:col-span-7 flex flex-col gap-8">
+                     {/* Breadcrumbs & Meta */}
+                     <div className="flex flex-col gap-4">
+                        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-[#9dadb9]">
+                            <Link to="/" className="hover:text-primary">Home</Link>
+                            <ArrowRight size={14} />
+                            <Link to="/archive" className="hover:text-primary">Archive</Link>
+                            <ArrowRight size={14} />
+                            <span className="text-slate-900 dark:text-white truncate max-w-[200px]">{post.title}</span>
+                        </div>
+                        <h1 className="text-3xl sm:text-4xl md:text-[42px] font-bold text-slate-900 dark:text-white leading-[1.15]">{post.title}</h1>
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-[#9dadb9] pb-4 border-b border-slate-200 dark:border-[#283239]">
+                            <div className="flex items-center gap-1">
+                                <Calendar size={18} />
+                                <span>{post.date}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                                <Clock size={18} />
+                                <span>{post.readTime}</span>
+                            </div>
+                            <div className="flex gap-2 ml-auto">
+                                <span className="px-2 py-1 rounded bg-primary/10 text-primary text-xs font-medium border border-primary/20">#{post.category}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Content Body */}
+                    {/* We render the HTML generated by Jekyll */}
+                    <div 
+                        className="prose prose-slate dark:prose-invert prose-lg max-w-none text-slate-600 dark:text-[#dce6f0]"
+                        dangerouslySetInnerHTML={{ __html: post.content }}
+                    />
+
+                    {/* Footer Nav */}
+                    <div className="border-t border-slate-200 dark:border-[#283239] mt-8 pt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <Link to="/" className="group block p-4 rounded-xl bg-slate-100 dark:bg-surface-dark border border-slate-200 dark:border-[#283239] hover:border-primary/50 transition-all">
+                            <span className="text-xs text-slate-500 dark:text-[#9dadb9] uppercase tracking-wider mb-1 block">Return</span>
+                            <h4 className="text-slate-900 dark:text-white font-bold group-hover:text-primary transition-colors">Back to Intelligence Feed</h4>
+                        </Link>
+                    </div>
+                </article>
+
+                 {/* Right Sidebar: TOC (Sticky) */}
+                 <aside className="hidden xl:block xl:col-span-3 relative">
+                    <div className="sticky top-24 pl-4 border-l border-slate-200 dark:border-[#283239]">
+                        <h5 className="text-slate-900 dark:text-white text-sm font-bold uppercase tracking-wider mb-4">Metadata</h5>
+                        <div className="flex flex-col gap-2 text-sm text-slate-500 dark:text-slate-400">
+                             <div>Category: <span className="text-slate-900 dark:text-white">{post.category}</span></div>
+                             <div>Tags:</div>
+                             <div className="flex flex-wrap gap-2 mt-1">
+                                {post.tags.map(tag => (
+                                    <span key={tag} className="px-2 py-1 bg-slate-100 dark:bg-surface-dark rounded text-xs border border-slate-200 dark:border-slate-700">{tag}</span>
+                                ))}
+                             </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    );
+};
+
+export default PostDetailPage;

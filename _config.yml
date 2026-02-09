@@ -1,0 +1,16 @@
+title: 0xOsama
+description: Malware Analyst
+url: ""
+baseurl: ""
+theme: jekyll-theme-slate # Optional, we override it
+plugins:
+  - jekyll-feed
+
+# Ensure our API file is processed
+include: ['api/posts.json']
+exclude: ['node_modules', 'package.json', 'package-lock.json', 'tsconfig.json']
+
+# Markdown Settings
+markdown: kramdown
+highlighter: rouge
+permalink: /posts/:year/:month/:day/:title/

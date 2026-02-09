@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/assets/images/site_data/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/site_data/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/site_data/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/site_data/apple-touch-icon.png" />
+    <title>0xOsama</title>
+    <!-- Start SPA Redirect Script -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&') 
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    <!-- End SPA Redirect Script -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1392ec",
+              "background-light": "#e2e4e8",
+              "background-dark": "#101a22",
+              "surface-dark": "#161b22",
+              "surface-darker": "#0d141a",
+              "border-dark": "#283239",
+              "text-main": "#c9d1d9",
+              "text-muted": "#8b949e",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              mono: ["Fira Code", "ui-monospace", "SFMono-Regular", "monospace"],
+            },
+            animation: {
+              'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            typography: (theme) => ({
+              DEFAULT: {
+                css: {
+                  color: theme('colors.slate.600'),
+                  a: {
+                    color: theme('colors.primary'),
+                    '&:hover': {
+                      color: '#1d4ed8',
+                    },
+                  },
+                },
+              },
+              invert: {
+                css: {
+                  color: theme('colors.slate.300'),
+                  a: {
+                    color: theme('colors.primary'),
+                    '&:hover': {
+                      color: '#60a5fa',
+                    },
+                  },
+                  h1: { color: theme('colors.white') },
+                  h2: { color: theme('colors.white') },
+                  h3: { color: theme('colors.white') },
+                  strong: { color: theme('colors.white') },
+                  code: { color: theme('colors.white') },
+                },
+              },
+            }),
+          },
+        },
+      }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- React & Babel for Runtime Compilation on GitHub Pages -->
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?deps=react@18.2.0,react-dom@18.2.0",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0?deps=react@18.2.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
+  }
+}
+</script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+      body {
+        font-family: 'Space Grotesk', sans-serif;
+      }
+      .font-mono {
+        font-family: 'Fira Code', monospace;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #101a22;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #283239;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+      .dark ::-webkit-scrollbar-thumb:hover {
+        background: #1392ec;
+      }
+      
+      /* Glitch Effect */
+      .glitch-text { position: relative; }
+      .glitch-text::before, .glitch-text::after {
+        content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      }
+      .glitch-text::before {
+        left: 2px; text-shadow: -1px 0 #ff00c1; clip-path: inset(44% 0 61% 0);
+        animation: glitch-anim 3s infinite linear alternate-reverse;
+      }
+      .glitch-text::after {
+        left: -2px; text-shadow: -1px 0 #00fff9; clip-path: inset(54% 0 10% 0);
+        animation: glitch-anim2 2s infinite linear alternate-reverse;
+      }
+      @keyframes glitch-anim {
+        0% { clip-path: inset(44% 0 61% 0); } 100% { clip-path: inset(4% 0 91% 0); }
+      }
+      @keyframes glitch-anim2 {
+        0% { clip-path: inset(11% 0 42% 0); } 100% { clip-path: inset(76% 0 14% 0); }
+      }
+    </style>
+</head>
+  <body>
+    <div id="root"></div>
+    <!-- Load the Main Application Script -->
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
